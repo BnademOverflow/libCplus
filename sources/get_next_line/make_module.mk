@@ -1,0 +1,29 @@
+# MANUALLY GENERATED PART
+
+LOCAL_SRC_DIR = get_next_line
+MODULE_NAME = get_next_line
+
+INCLUDES = libft.h
+
+SRC_FILES = get_next_line.c
+
+# AUTO GENERATED PART
+
+include make_config.mk
+
+OBJ_FILES = $(SRC_FILES:.c=.o)
+OBJ_FILES := $(addprefix $(OBJ_DIR)/, $(OBJ_FILES))
+INCLUDES := $(addprefix $(INC_DIR)/, $(INCLUDES))
+INCLUDE_FLAGS = $(addprefix -I , $(INC_DIR))
+GLOBAL_OBJ_FILES += $(OBJ_FILES)
+
+LIB9WADA_$(MODULE_NAME)_OBJECTS = $(OBJ_FILES)
+
+LIB9WADA_$(MODULE_NAME): $(OBJ_FILES)
+	@echo "COMPILED MODULE $@"
+
+$(OBJ_FILES): $(OBJ_DIR)/%.o : $(SRC_DIR)/$(LOCAL_SRC_DIR)/%.c | $(OBJ_DIR)
+	@echo "\tCREATING $@"
+	@$(CC) $(FLAGS) $(INCLUDE_FLAGS) -c $< -o $@
+
+.PHONY: LIB9WADA_$(MODULE_NAME) LIB9WADA_$(MODULE_NAME)_CLEAN
