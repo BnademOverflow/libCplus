@@ -1,7 +1,19 @@
-# lib9wada
+# Lib9wada
 Wonderful library with lots of useful functions, algorithms and data structures in C, link it with -l9wada
 
-# Library Structure
+# Usage
+Compile the library with
+```
+make
+```
+To link it with your project use flag `-l9wada` with GCC
+```
+gcc main.c -l9wada
+```
+Include files depending on functions and modules you will use
+all header files are available in `includes` directory
+
+# Library Structure And How To Contribute
 the root of the repo contains
 ```
 Makefile
