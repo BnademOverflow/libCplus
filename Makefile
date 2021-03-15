@@ -18,7 +18,6 @@ all: $(NAME)
 
 GLOBAL_OBJ_FILES :=
 
-include tests/make_test.mk
 MODULES := $(addsuffix /make_module.mk, $(addprefix $(SRC_DIR)/, $(MODULES)))
 include $(MODULES)
 
@@ -32,7 +31,6 @@ $(NAME): $(MODULE_RULES) | $(OBJ_DIR)
 	@echo "INDEXING LIBRARY"
 	@$(RANLIB) $(RANLIB_FLAGS) $(NAME)
 	@echo "CREATED $(NAME)"
-test: make_test
 clean:
 	@$(DELETE_COMMAND) $(DELETE_COMMAND_FLAGS) $(OBJ_DIR)
 	@echo "CLEANED OBJECT FILES"

@@ -7,7 +7,6 @@ FLAGS = -Wall -Werror -Wextra
 SRC_DIR = sources
 INC_DIR = includes
 OBJ_DIR = objects
-TEST_DIR = tests
 DELETE_COMMAND = rm
 DELETE_COMMAND_FLAGS = -rf
 LINKER = ar

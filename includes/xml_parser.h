@@ -68,7 +68,6 @@ size_t					ft_escape_whitespaces(char *str);
 int						ft_xml_parse_tagclose(char **line, t_xml_tag *tag);
 void					*ft_xml_free_data(t_xml_data *data);
 void					ft_xml_free_props(t_xml_tag *tag);
-void					*ft_xml_free_data(t_xml_data *data);
 int						ft_get_hex_byte(char *string, int *status);
 double					ft_parse_float(char *string, int *status);
 
