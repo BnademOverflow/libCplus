@@ -16,7 +16,7 @@ include make_config.mk
 
 all: $(NAME)
 
-GLOBAL_OBJ_FILES =
+GLOBAL_OBJ_FILES :=
 
 MODULES := $(addsuffix /make_module.mk, $(addprefix $(SRC_DIR)/, $(MODULES)))
 include $(MODULES)
