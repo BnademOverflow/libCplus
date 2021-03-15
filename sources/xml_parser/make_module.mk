@@ -8,7 +8,7 @@ INCLUDES = xml_parser.h
 SRC_FILES = main.c\
 	    parser_types.c\
 	    tools.c\
-	    xml_tools.c
+	    manipulations.c
 
 # AUTO GENERATED PART
 
