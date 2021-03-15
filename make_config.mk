@@ -1,11 +1,13 @@
 # makefile config specifying locations, compiler and compilation flags
 
-NAME = lib9wada.a
+LIB_NAME = 9wada
+NAME = lib$(LIB_NAME).a
 CC = gcc
 FLAGS = -Wall -Werror -Wextra
 SRC_DIR = sources
 INC_DIR = includes
 OBJ_DIR = objects
+TEST_DIR = tests
 DELETE_COMMAND = rm
 DELETE_COMMAND_FLAGS = -rf
 LINKER = ar
@@ -17,4 +19,5 @@ RANLIB_FLAGS =
 
 MODULES = base\
 	  ttslist\
-	  get_next_line
+	  get_next_line\
+	  xml_parser
