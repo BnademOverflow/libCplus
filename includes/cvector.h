@@ -13,12 +13,11 @@ typedef struct cvector{
     int size;
 }cvector;
 
-cvector *create(void);
-
-void  insert(cvector *vec, int idx, void *value);
-void  swap(cvector *vec, int idx, int idx_);
-void  push_back(cvector *vec, void *value);
-void  pop_back(cvector *vec);
-void  delete(cvector *vec);
+cvector *cvector_create(void);
+void  cvector_insert(cvector *vec, int idx, void *value);
+void  cvector_swap(cvector *vec, int idx, int idx_);
+void  cvector_push_back(cvector *vec, void *value);
+void  cvector_pop_back(cvector *vec);
+void  cvector_delete(cvector *vec);
 
 #endif 
