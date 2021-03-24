@@ -1,6 +1,5 @@
 #include "cvector.h"
 
-<<<<<<< HEAD
 /*
 **  Initialises an already existing cvector
 */
@@ -9,18 +8,6 @@ int cvector_init(cvector*   vec)
 {
     if (!(vec->data = ft_memalloc(sizeof(void *) * INITIAL_SIZE)))
         return (0);
-=======
-cvector *cvector_create(void){
-    cvector *vec = (cvector*)malloc(sizeof(cvector));    
-    vec->data = malloc(sizeof(void*) * INITIAL_SIZE);
-
-    if ((vec == NULL) || (vec->data == NULL))
-    {
-        perror("malloc");
-        exit(-1);
-    memset(vec->data, 0, (INITIAL_SIZE * sizeof(vec->data)));
-    }
->>>>>>> 061bd3a3f66d800f233d1b0ed6670d0dd8a41c99
     vec->idx = 0;
     vec->size = INITIAL_SIZE;
     return (1);
