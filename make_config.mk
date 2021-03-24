@@ -1,6 +1,6 @@
 # makefile config specifying locations, compiler and compilation flags
 
-LIB_NAME = 9wada
+LIB_NAME = C+
 NAME = lib$(LIB_NAME).a
 CC = gcc
 FLAGS = -Wall -Werror -Wextra
