@@ -1,14 +1,15 @@
-# Lib9wada
-Wonderful library with lots of useful functions, algorithms and data structures in C, link it with -l9wada
+# LibC+
+Wonderful library with lots of useful functions, algorithms and data structures in C, link it with -lC+
+Better than C, not as much as c++
 
 # Usage
 Compile the library with
 ```
 make
 ```
-To link it with your project use flag `-l9wada` with GCC
+To link it with your project use flag `-lC+` with GCC
 ```
-gcc main.c -l9wada
+gcc main.c -lC+
 ```
 Include files depending on functions and modules you will use
 all header files are available in `includes` directory
@@ -71,7 +72,7 @@ We do that in the `make_config.mk`
 ```makefile
 # makefile config specifying locations, compiler and compilation flags
 
-NAME = lib9wada.a
+NAME = libC+.a
 CC = gcc
 FLAGS = -Wall -Werror -Wextra
 SRC_DIR = sources
@@ -93,5 +94,4 @@ MODULES = base\
 This `make_config.mk` also contains other config variables, so you can change the compiler you use or the library name.
 # The documentations
 Every module should contain a README.md file, containing the documentation and explaining what each function does, with its prototype and usage.
-**An example documentation is needed**
 finally, the author file contains names or logins of people who contributed to this library.
