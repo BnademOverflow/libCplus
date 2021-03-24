@@ -1,9 +1,7 @@
 #ifndef CVECTOR_H
 #define CVECTOR_H
 
-#include <stdio.h>
-#include <stdlib.h>
-#include <string.h>
+#include "libft.h"
 
 #define INITIAL_SIZE 20
 
@@ -13,12 +11,13 @@ typedef struct cvector{
     int size;
 }cvector;
 
-cvector *create(void);
-
-void  insert(cvector *vec, int idx, void *value);
-void  swap(cvector *vec, int idx, int idx_);
-void  push_back(cvector *vec, void *value);
-void  pop_back(cvector *vec);
-void  delete(cvector *vec);
+cvector *cvector_create(void);
+int     cvector_resize(cvector *vec, size_t size);
+int     cvector_init(cvector*   vec);
+void    cvector_insert(cvector *vec, int idx, void *value);
+void    cvector_swap(cvector *vec, int idx, int idx_);
+void    cvector_push_back(cvector *vec, void *value);
+void    cvector_pop_back(cvector *vec);
+void    cvector_delete(cvector *vec, void (*del)(void *));
 
 #endif 

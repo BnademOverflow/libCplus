@@ -1,25 +1,52 @@
 #include "cvector.h"
 
-cvector *create(void){
-    cvector *vec = (cvector*)malloc(sizeof(cvector));    
-    vec->data = malloc(sizeof(void*) * INITIAL_SIZE);
+/*
+**  Initialises an already existing cvector
+*/
 
-    memset(vec->data, 0, (INITIAL_SIZE * sizeof(vec->data)));
-    if ((vec == NULL) || (vec->data == NULL))
-    {
-        perror("malloc");
-        exit(-1);
-    }
+int cvector_init(cvector*   vec)
+{
+    if (!(vec->data = ft_memalloc(sizeof(void *) * INITIAL_SIZE)))
+        return (0);
     vec->idx = 0;
     vec->size = INITIAL_SIZE;
+    return (1);
+}
+
+/*
+**  Allocates a new vector and initializes it
+*/
+
+cvector *cvector_create(void){
+    cvector *vec;
+    
+    if (!(vec = (cvector*)malloc(sizeof(cvector))))
+        return (NULL);
+    if (!cvector_init(vec))
+    {
+        free(vec);
+        return (NULL);
+    }
     return vec;
 }
 
 /*
-    add element at the end 
+**  resizes the vector size
 */
 
-void push_back(cvector *vec, void *value){
+int cvector_resize(cvector *vec, size_t size)
+{
+    if (!(vec->data = realloc(vec->data, sizeof(void*) * size)))
+        return (0);
+    vec->size = size;
+    return (1);
+}
+
+/*
+**  add element at the end 
+*/
+
+void cvector_push_back(cvector *vec, void *value){
     if ((vec->idx >= vec->size))
     {
         vec->size = (vec->size) << 1;
@@ -30,10 +57,10 @@ void push_back(cvector *vec, void *value){
 }
 
 /*
-    delete last element
+**  delete last element
 */
 
-void pop_back(cvector *vec){
+void cvector_pop_back(cvector *vec){
     if((vec->idx != 0)){
         vec->data[vec->idx - 1] = 0;
         vec->idx--;
@@ -41,22 +68,30 @@ void pop_back(cvector *vec){
 }
 
 /*
-    *magic*
+**  frees the vector and all it's elements using del function if passed
 */
 
-void delete(cvector *vec){
-    if ((vec->data != NULL))
-    {    
-        free(vec->data);
-        free(vec);
+void cvector_delete(cvector *vec, void (*del)(void *)){
+    int index;
+
+    index = 0;
+    if (del)
+    {
+        while (index < vec->size)
+        {
+            del(vec->data[index]);
+            index++;
+        }
     }
+    free(vec->data);
+    free(vec);
 }
 
 /*
     insert element
 */
 
-void insert(cvector *vec, int idx, void *value){
+void cvector_insert(cvector *vec, int idx, void *value){
     if ((idx > -1) && (idx <= (vec->size - 1)))
     {
         vec->data[idx] = value;
@@ -67,7 +102,7 @@ void insert(cvector *vec, int idx, void *value){
     swap elements
 */
 
-void swap(cvector *vec, int idx, int idx_){
+void cvector_swap(cvector *vec, int idx, int idx_){
     void *tmp;
     if ((idx > -1) && (idx <= (vec->size - 1)))
     {
