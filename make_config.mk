@@ -19,5 +19,5 @@ RANLIB_FLAGS =
 MODULES = base\
 	  ttslist\
 	  get_next_line\
-	  xml_parser\
-	  cvector
+	  cvector\
+	  xml_parser

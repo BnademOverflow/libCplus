@@ -5,10 +5,9 @@ MODULE_NAME = xml_parser
 
 INCLUDES = xml_parser.h
 
-SRC_FILES = main.c\
-	    parser_types.c\
-	    tools.c\
-	    manipulations.c
+SRC_FILES = xml_parser.c\
+			errors.c\
+			xml_parse_parts.c
 
 # AUTO GENERATED PART
 
