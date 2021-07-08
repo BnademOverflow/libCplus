@@ -6,7 +6,7 @@
 /*   By: abiri <kerneloverseer@pm.me>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/08 16:55:38 by abiri             #+#    #+#             */
-/*   Updated: 2021/07/08 19:29:00 by abiri            ###   ########.fr       */
+/*   Updated: 2021/07/08 19:31:07 by abiri            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -187,7 +187,9 @@ int				css_parse_tokens(t_css_context *css, char *string)
 	css->tokenizer.next_types = TOKEN_ELEMENT_NAME;
 	while ((token = get_next_token(&string)))
 	{
-		// print_expected_types(css->tokenizer.next_types);
+#ifdef DEBUG
+	print_expected_types(css->tokenizer.next_types);
+#endif
 		css->tokenizer.next_types = 
 			detect_token_type(css->tokenizer.next_types, token);
 		if (css->tokenizer.next_types == TOKEN_ELEMENT_ERROR)
@@ -195,9 +197,13 @@ int				css_parse_tokens(t_css_context *css, char *string)
 			printf("\e[31mERROR IN TOKEN |%s|\e[0m\n", token->content);
 			return (0);
 		}
-		// print_token_type(token);
+#ifdef DEBUG
+	print_token_type(token);
+#endif
 		store_token_content(css, token);
 	}
+#ifdef DEBUG
 	debug_print_context(css);
+#endif
 	return (1);
 }

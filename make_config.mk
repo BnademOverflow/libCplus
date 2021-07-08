@@ -3,7 +3,8 @@
 LIB_NAME = C+
 NAME = lib$(LIB_NAME).a
 CC = gcc
-FLAGS = -Wall -Werror -Wextra
+DEBUG = -D DEBUG
+FLAGS = $(DEBUG) -Wall -Werror -Wextra
 SRC_DIR = sources
 INC_DIR = includes
 OBJ_DIR = objects
