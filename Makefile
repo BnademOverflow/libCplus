@@ -6,7 +6,7 @@
 #    By: abiri <abiri@1337.MA>                      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/10/11 14:42:53 by abiri             #+#    #+#              #
-#    Updated: 2019/05/03 22:42:32 by abiri            ###   ########.fr        #
+#    Updated: 2021/07/08 16:52:34 by abiri            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -39,5 +39,7 @@ fclean: clean
 	@echo "DELETED $(NAME)"
 	@$(DELETE_COMMAND) $(DELETE_COMMAND_FLAGS) $(OBJ_DIR)
 	@echo "DELETED $(OBJ_DIR)"
+test: $(NAME)
+	@$(CC) ./tests/main.c -L. -lC+ -I $(INC_DIR) -o test
 re: fclean all
 .PHONY: all clean fclean re

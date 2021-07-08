@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: abiri <kerneloverseer@protonmail>          +#+  +:+       +#+        */
+/*   By: abiri <kerneloverseer@pm.me>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/18 13:50:29 by abiri             #+#    #+#             */
-/*   Updated: 2019/05/03 19:20:05 by abiri            ###   ########.fr       */
+/*   Updated: 2021/07/08 19:20:47 by abiri            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,7 +92,7 @@ static int		getline(t_list *stock, char **line, int *r)
 	else
 		stock->content = NULL;
 	free(temp);
-	*r = (c != 0);
+	*r = stock->content != NULL;
 	return (flag);
 }
 

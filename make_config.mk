@@ -20,4 +20,5 @@ MODULES = base\
 	  ttslist\
 	  get_next_line\
 	  xml_parser\
-	  cvector
+	  cvector\
+	  css_parser

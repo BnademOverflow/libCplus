@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strcjoin.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: abiri <kerneloverseer@protonmail>          +#+  +:+       +#+        */
+/*   By: abiri <kerneloverseer@pm.me>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/17 21:00:55 by abiri             #+#    #+#             */
-/*   Updated: 2019/01/19 13:05:50 by abiri            ###   ########.fr       */
+/*   Updated: 2021/07/08 19:16:46 by abiri            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,10 @@ char	*ft_strcjoin(char *s1, char join, char *s2)
 	size_t	size;
 	size_t	middle;
 
-	if (!s1 || !s2)
-		return (NULL);
+	if (!s1)
+		s1 = "";
+	if (!s2)
+		s2 = "";
 	middle = ft_strlen(s1);
 	size = middle + ft_strlen(s2) + 2;
 	if (!(result = malloc(size)))

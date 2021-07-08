@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   libft.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: abiri <abiri@1337.MA>                      +#+  +:+       +#+        */
+/*   By: abiri <kerneloverseer@pm.me>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/04 11:38:53 by abiri             #+#    #+#             */
-/*   Updated: 2019/05/20 23:46:32 by abiri            ###   ########.fr       */
+/*   Updated: 2021/07/08 19:20:25 by abiri            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 # include <stdlib.h>
 # include <unistd.h>
 # include <fcntl.h>
-# define BUFF_SIZE 1
+# define BUFF_SIZE 2048
 # define WHITESPACES "\t\n\v\f\r "
 # define ABS(i) (i > 0 ? i : -i)
 # define TRUE 1
