@@ -6,7 +6,7 @@
 /*   By: abiri <kerneloverseer@pm.me>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/04 11:38:53 by abiri             #+#    #+#             */
-/*   Updated: 2021/07/10 19:50:42 by abiri            ###   ########.fr       */
+/*   Updated: 2021/07/13 17:24:55 by abiri            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@
 # define FALSE 0
 # define SUCCESS 1
 # define ERROR 0
+# define HEX_CHARSET "0123456789ABCDEF"
 
 typedef u_int32_t uint32_t;
 typedef u_int16_t uint16_t;
@@ -143,5 +144,8 @@ char				*ft_removechars(char **str, char toremove);
 char				*ft_getnextvar(char *str);
 int					ft_scanstr(char *text, char *expression, ...);
 int					ft_match(char *text, char *expression);
+int					ft_int_min(int a, int b);
+int					ft_int_max(int a, int b);
+int					ft_int_cap(int value, int min, int max);
 
 #endif

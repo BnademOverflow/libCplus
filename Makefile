@@ -6,7 +6,7 @@
 #    By: abiri <kerneloverseer@pm.me>               +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/10/11 14:42:53 by abiri             #+#    #+#              #
-#    Updated: 2021/07/08 19:36:43 by abiri            ###   ########.fr        #
+#    Updated: 2021/07/13 16:00:25 by abiri            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -21,7 +21,7 @@ GLOBAL_OBJ_FILES :=
 MODULES := $(addsuffix /make_module.mk, $(addprefix $(SRC_DIR)/, $(MODULES)))
 include $(MODULES)
 
-MODULE_RULES = $(addprefix LIB9WADA_, $(MODULES))
+MODULE_RULES = $(addprefix LIBCPLUS_, $(MODULES))
 
 $(OBJ_DIR):
 	@-mkdir $(OBJ_DIR)
