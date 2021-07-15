@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   tokenizer.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: abiri <kerneloverseer@pm.me>               +#+  +:+       +#+        */
+/*   By: abiri <abiri@student.1337.ma>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/08 16:55:38 by abiri             #+#    #+#             */
-/*   Updated: 2021/07/08 19:31:07 by abiri            ###   ########.fr       */
+/*   Updated: 2021/07/15 15:00:12 by abiri            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,6 +89,8 @@ void			print_expected_types(int types)
 				printf("\e[34mNONE | \e[0m");
 			else if ((1 << i) == TOKEN_ELEMENT_NAME)
 				printf("\e[34mNAME | \e[0m");
+			else if ((1 << i) == TOKEN_ELEMENT_STATE)
+				printf("\e[34mSTATE | \e[0m");
 			else if ((1 << i) == TOKEN_ELEMENT_OPEN)
 				printf("\e[34mOPEN | \e[0m");
 			else if ((1 << i) == TOKEN_ELEMENT_CLOSE)
@@ -115,6 +117,8 @@ void			print_token_type(t_css_parse_token *token)
 		printf("TOKEN |\e[32m%s\e[0m| IS : \e[33mNONE\e[0m\n", token->content);
 	else if (token->type == TOKEN_ELEMENT_NAME)
 		printf("TOKEN |\e[32m%s\e[0m| IS : \e[33mNAME\e[0m\n", token->content);
+	else if (token->type == TOKEN_ELEMENT_STATE)
+		printf("TOKEN |\e[32m%s\e[0m| IS : \e[33mSTATE\e[0m\n", token->content);
 	else if (token->type == TOKEN_ELEMENT_OPEN)
 		printf("TOKEN |\e[32m%s\e[0m| IS : \e[33mOPEN\e[0m\n", token->content);
 	else if (token->type == TOKEN_ELEMENT_CLOSE)
@@ -138,7 +142,7 @@ void			debug_print_context(t_css_context *context)
 	context->elements.iterator = context->elements.first;
 	while ((element = ttslist_iter_content(&context->elements)))
 	{
-		printf("%s {\n", element->name);
+		printf("%s(%s) {\n", element->name, element->state);
 		element->props.iterator = element->props.first;
 		while ((prop = ttslist_iter_content(&element->props)))
 			printf("%s:%s\n", prop->key, prop->value);
@@ -151,6 +155,7 @@ void			store_token_content(t_css_context *css, t_css_parse_token *token)
 	t_css_element	*current_element;
 	t_css_prop		*current_prop;
 	char			*temp;
+	char			**name_state;
 
 	current_element = css->tokenizer.current_element;
 	current_prop = css->tokenizer.current_prop;
@@ -158,21 +163,32 @@ void			store_token_content(t_css_context *css, t_css_parse_token *token)
 	{
 		current_element = ft_memalloc(sizeof(t_css_element));
 		ttslist_init(&current_element->props);
-		current_element->name = token->content;
+		if (ft_strchr(token->content, ':'))
+		{
+			name_state = ft_strsplit(token->content, ':');
+			current_element->name = ft_strdup(name_state[0]);
+			current_element->state = ft_strdup(name_state[1]);
+			ft_tabfree(name_state);
+		}
+		else
+			current_element->name = ft_strdup(token->content);
 		css->elements.push(&css->elements, current_element);
 		current_prop = NULL;
+	}
+	else if(token->type == TOKEN_ELEMENT_STATE)
+	{
+		current_element->state = ft_strdup(token->content+1);
 	}
 	else if(token->type == TOKEN_ELEMENT_PROP_NAME)
 	{
 		current_prop = ft_memalloc(sizeof(t_css_element));
-		current_prop->key = token->content;
+		current_prop->key = ft_strdup(token->content);
 		current_element->props.push(&current_element->props, current_prop);
 	}
 	else if(token->type == TOKEN_ELEMENT_PROP_VALUE)
 	{
 		temp = current_prop->value;
-		current_prop->value = ft_strjoin(current_prop->value, token->content);
-		free(token->content);
+		current_prop->value = ft_strcjoin(current_prop->value, ' ',token->content);
 		free(temp);
 	}
 	css->tokenizer.current_element = current_element;

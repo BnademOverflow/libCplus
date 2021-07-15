@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   token_identifiers.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: abiri <kerneloverseer@pm.me>               +#+  +:+       +#+        */
+/*   By: abiri <abiri@student.1337.ma>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/08 17:35:13 by abiri             #+#    #+#             */
-/*   Updated: 2021/07/08 19:04:38 by abiri            ###   ########.fr       */
+/*   Updated: 2021/07/15 14:51:00 by abiri            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,19 @@ int css_tokenize_element_name(t_css_parse_token *token)
 {
     (void)token;
     if (css_tokenize_element_semicolon(token) ||
+        css_tokenize_element_open(token) || css_tokenize_element_close(token)
+        || css_tokenize_element_colon(token))
+        return (TOKEN_ELEMENT_ERROR);
+    return (TOKEN_ELEMENT_OPEN | TOKEN_ELEMENT_STATE);
+}
+
+int css_tokenize_element_state(t_css_parse_token *token)
+{
+    (void)token;
+    if (css_tokenize_element_semicolon(token) ||
         css_tokenize_element_open(token) || css_tokenize_element_close(token))
+        return (TOKEN_ELEMENT_ERROR);
+    if (token->content[0] != ':')
         return (TOKEN_ELEMENT_ERROR);
     return (TOKEN_ELEMENT_OPEN);
 }
@@ -86,6 +98,7 @@ int css_tokenize_element_prop_value(t_css_parse_token *token)
 t_css_token_identifier  g_token_identifiers[] = {
     {.type=TOKEN_ELEMENT_NONE, .function=css_tokenize_element_none},
     {.type=TOKEN_ELEMENT_NAME, .function=css_tokenize_element_name},
+    {.type=TOKEN_ELEMENT_STATE, .function=css_tokenize_element_state},
     {.type=TOKEN_ELEMENT_OPEN, .function=css_tokenize_element_open},
     {.type=TOKEN_ELEMENT_CLOSE, .function=css_tokenize_element_close},
     {.type=TOKEN_ELEMENT_COLON, .function=css_tokenize_element_colon},

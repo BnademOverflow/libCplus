@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   css_parser.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: abiri <kerneloverseer@pm.me>               +#+  +:+       +#+        */
+/*   By: abiri <abiri@student.1337.ma>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/08 16:53:34 by abiri             #+#    #+#             */
-/*   Updated: 2021/07/13 17:01:38 by abiri            ###   ########.fr       */
+/*   Updated: 2021/07/15 14:37:48 by abiri            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,13 +18,16 @@ t_css_context	*css_parse_file(char *path)
 	char			*content;
 	char			*temp;
 	int				fd;
+	int				r;
 	t_css_context	*result;
 	
 	file_content = NULL;
 	if ((fd = open(path, O_RDONLY)) < 0)
 		return (0);
-	while (get_next_line(fd, &content) > 0)
+	r = 1;
+	while (r > 0)
 	{
+		r = get_next_line(fd, &content);
 		temp = file_content;
 		file_content = ft_strcjoin(file_content, '\n', content);
 		free(temp);
