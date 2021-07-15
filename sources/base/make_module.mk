@@ -102,6 +102,7 @@ SRC_FILES = ft_atoi.c\
 	    ft_unescape_args.c\
 	    ft_wcharlen.c\
 	    ft_wstrlen.c\
+		ft_int_min.c\
 	    ft_wstrlen_min.c
 
 # AUTO GENERATED PART
@@ -114,13 +115,13 @@ INCLUDES := $(addprefix $(INC_DIR)/, $(INCLUDES))
 INCLUDE_FLAGS = $(addprefix -I , $(INC_DIR))
 GLOBAL_OBJ_FILES := $(GLOBAL_OBJ_FILES) $(OBJ_FILES)
 
-LIB9WADA_$(MODULE_NAME)_OBJECTS = $(OBJ_FILES)
+LIBCPLUS_$(MODULE_NAME)_OBJECTS = $(OBJ_FILES)
 
-LIB9WADA_$(MODULE_NAME): $(OBJ_FILES)
+LIBCPLUS_$(MODULE_NAME): $(OBJ_FILES)
 	@echo "COMPILED MODULE $@"
 
 $(OBJ_FILES): $(OBJ_DIR)/%.o : $(SRC_DIR)/$(LOCAL_SRC_DIR)/%.c | $(OBJ_DIR)
 	@echo "\tCREATING $@"
 	@$(CC) $(FLAGS) $(INCLUDE_FLAGS) -c $< -o $@
 
-.PHONY: LIB9WADA_$(MODULE_NAME) LIB9WADA_$(MODULE_NAME)_CLEAN
+.PHONY: LIBCPLUS_$(MODULE_NAME) LIBCPLUS_$(MODULE_NAME)_CLEAN

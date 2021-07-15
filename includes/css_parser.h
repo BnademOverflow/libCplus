@@ -6,7 +6,7 @@
 /*   By: abiri <kerneloverseer@pm.me>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/08 16:19:25 by abiri             #+#    #+#             */
-/*   Updated: 2021/07/08 19:30:23 by abiri            ###   ########.fr       */
+/*   Updated: 2021/07/13 15:51:50 by abiri            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,9 +70,9 @@ typedef struct	s_css_context
 **	External API functions
 */
 
-int					css_parse_string(char *string);
+t_css_context		*css_parse_string(char *string);
 t_css_parse_token	*get_next_token(char **string);
 int					css_parse_tokens(t_css_context *css, char *str);
-int					css_parse_file(char *path);
+t_css_context		*css_parse_file(char *path);
 
 #endif
