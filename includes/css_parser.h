@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   css_parser.h                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: abiri <kerneloverseer@pm.me>               +#+  +:+       +#+        */
+/*   By: abiri <abiri@student.1337.ma>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/08 16:19:25 by abiri             #+#    #+#             */
-/*   Updated: 2021/07/08 19:30:23 by abiri            ###   ########.fr       */
+/*   Updated: 2021/07/15 15:09:27 by abiri            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,13 +15,13 @@
 # include "libft.h"
 # include "ttslist.h"
 # include <stdio.h>
-# define TOKEN_TYPE_COUNT 8
+# define TOKEN_TYPE_COUNT 9
 
 enum e_css_tokens {TOKEN_ELEMENT_ERROR=0,
-	TOKEN_ELEMENT_NONE=1, TOKEN_ELEMENT_NAME=2,
-	TOKEN_ELEMENT_OPEN=4, TOKEN_ELEMENT_CLOSE=8, TOKEN_ELEMENT_COLON=16,
-	TOKEN_ELEMENT_SEMICOLON=32, TOKEN_ELEMENT_PROP_NAME=64,
-	TOKEN_ELEMENT_PROP_VALUE=128};
+	TOKEN_ELEMENT_NONE=1, TOKEN_ELEMENT_NAME=2, TOKEN_ELEMENT_STATE=4,
+	TOKEN_ELEMENT_OPEN=8, TOKEN_ELEMENT_CLOSE=16, TOKEN_ELEMENT_COLON=32,
+	TOKEN_ELEMENT_SEMICOLON=64, TOKEN_ELEMENT_PROP_NAME=128,
+	TOKEN_ELEMENT_PROP_VALUE=256};
 
 typedef struct	s_css_prop
 {
@@ -32,6 +32,7 @@ typedef struct	s_css_prop
 typedef struct	s_css_element
 {
 	char		*name;
+	char		*state;
 	t_list_head	props;
 }				t_css_element;
 
@@ -70,9 +71,9 @@ typedef struct	s_css_context
 **	External API functions
 */
 
-int					css_parse_string(char *string);
+t_css_context		*css_parse_string(char *string);
 t_css_parse_token	*get_next_token(char **string);
 int					css_parse_tokens(t_css_context *css, char *str);
-int					css_parse_file(char *path);
+t_css_context		*css_parse_file(char *path);
 
 #endif
